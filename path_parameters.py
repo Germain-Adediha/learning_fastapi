@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from enum import   Enum
+from enum import Enum
 
 
 class ModelName(str,Enum):
