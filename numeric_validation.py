@@ -1,6 +1,6 @@
 """
-The same way we can declare  more validdtionss and metadata for query parameters with QUERY,
-we can declaree the same type of validations and metadata for path parameters with Path
+The same way we can declare  more validdtionss and metadata for query parameters with QUERY (Query),
+we can declaree the same type of validations and metadata for path parameters with PATH (Path)
 """
 from fastapi import FastAPI,Path,Query
 from typing import Optional
@@ -60,9 +60,4 @@ async def read_items3(
         })
     return  result
 
-
-
-"""
-With Query,Path we can declare metadata and string validations in the same ways as with Query parameters 
-"""
 
