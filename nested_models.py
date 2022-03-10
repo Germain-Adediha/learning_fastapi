@@ -54,3 +54,4 @@ async def create_multiple_images(images : list[Image]):
 @app.post("/index-weights/")
 async def create_index_weights(weights:dict[int,float]):
     return weights
+
