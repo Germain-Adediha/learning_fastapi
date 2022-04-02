@@ -1,3 +1,5 @@
+# CREATE , READ , UPDATE and  DELETE
+
 from sqlalchemy.orm import Session
 from . import models, schemas
 from fastapi import FastAPI
