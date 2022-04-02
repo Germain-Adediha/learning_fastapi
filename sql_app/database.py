@@ -8,5 +8,4 @@ db_url = "postgresql://germain:17mawuko17@localhost/my_db"
 engine = create_engine(db_url)
 
 SessionLocal = sessionmaker(bind=engine)
-
-Base =declarative_base()
+Base = declarative_base()

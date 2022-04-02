@@ -1,6 +1,6 @@
 from sqlalchemy.orm import relationship
 
-from  database import Base
+from  .database import Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
 
@@ -13,7 +13,6 @@ class User(Base):
     is_active =  Column(Boolean, default=True)
 
     items = relationship("Item",back_populates ="owner")
-
 
 
 class Item(Base):
