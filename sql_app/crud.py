@@ -35,6 +35,6 @@ def create_user_item(my_db : Session, item:schemas.Item, user_id:int):
     my_db_item = models.Item(**item.dict(),owner_id = user_id)
     my_db.add(my_db_item)
     my_db.commit()
-    my_db.refresh()
+    my_db.refresh(my_db_item)
 
     return my_db_item

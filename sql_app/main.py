@@ -1,8 +1,9 @@
 # main file with the api's decorators
 
-from fastapi import FastAPI , Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from . import crud, models, schemas
+
+from . import crud , models, schemas
 from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
@@ -26,7 +27,7 @@ def create_user(user:schemas.UserCreate, my_db:Session = Depends(get_my_db)):
     db_user = crud.get_user_by_email(my_db, email = user.email)
     if db_user:
         raise HTTPException(status_code=400, detail ="email already registered")
-    return crud.create_user(my_db = my_db)
+    return crud.create_user(my_db = my_db,user=user)
 
 
 @app.get("/users/", response_model= list[schemas.User])
@@ -51,7 +52,7 @@ def create_item_for_user(
     return crud.create_user_item(my_db=my_db, item = item, user_id = user_id)
 
 
-@app.get("/itens/", response_model=list[schemas.Item])
+@app.get("/items/", response_model=list[schemas.Item])
 def read_items(skip :int =0, limit:int=100, my_db: Session = Depends(get_my_db)):
     items = crud.get_items(my_db,skip =skip,limit=limit)
     return items
