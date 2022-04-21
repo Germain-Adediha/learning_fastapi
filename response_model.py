@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from typing import Optional, List
+from typing import Optional, List, Union
 from pydantic import BaseModel,  EmailStr
 
 app = FastAPI()
@@ -36,7 +36,7 @@ class UserOut(BaseModel):
 
 
 @app.post("/item/", response_model =Item)
-async def read_item(item: Item):
+async def create_item(item: Item):
     return item
 
 
@@ -53,6 +53,40 @@ async def read_item(item_id: str):
 @app.get("/items/{item_id}/name", response_model= Item,response_model_include=["name","description"])
 async def read_item_name(item_id : str):
     return items[item_id]
+
+
+class BaseItem(BaseModel):
+    description: str
+    type: str
+
+
+class CarItem(BaseItem):
+    type = "car"
+
+
+class PlaneItem(BaseItem):
+    type = "plane"
+    size: int
+
+
+new_items= {
+    "item1":{
+        "description":"the first item",
+        "type": "car"
+    },
+    "item2":{
+        "description":"The second item",
+        "type":"plane"
+    }
+}
+
+
+@app.get("/new_items/{id}", response_model= Union[PlaneItem, CarItem])
+async def read_new_item(id :str):
+    return new_items[id]
+
+
+
 
 
 """
