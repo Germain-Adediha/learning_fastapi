@@ -1,1 +1,1 @@
-LEARNING FASTAPI BASICS ON https://fastapi.tiangolo.com/ 
+LEARNING FASTAPI BASICS from [FastAPI](https://fastapi.tiangolo.com/)
